@@ -1,15 +1,19 @@
 TodoIndex = React.createClass({
-  getTasks() {
-    return [
-      { _id: 1, text: "This is task 1" },
-      { _id: 2, text: "This is task 2" },
-      { _id: 3, text: "This is task 3" }
-    ];
+  mixins: [ReactMeteorData],
+
+  getMeteorData() {
+    return {
+      todos: Todos.find({}).fetch()
+    }
+  },
+
+  getTodos() {
+    return this.data.todos;
   },
  
-  renderTasks() {
-    return this.getTasks().map((task) => {
-      return <Todo key={task._id} task={task} />;
+  renderTodos() {
+    return this.getTodos().map((todo) => {
+      return <Todo key={todo._id} todo={todo} />;
     });
   },
  
@@ -21,7 +25,7 @@ TodoIndex = React.createClass({
         </header>
  
         <ul>
-          {this.renderTasks()}
+          {this.renderTodos()}
         </ul>
       </div>
     );
