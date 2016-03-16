@@ -1,13 +1,21 @@
-const {Router, Route, IndexRoute, DefaultRoute,  browserHistory} = ReactRouter;
+FlowRouter.route('/', {
+    action: function(params, queryParams) {
+    	FlowRouter.go('/counter');
+    }
+});
 
-Meteor.startup(function() {
-  ReactDOM.render((
-    <Router history={browserHistory}>
-    	<Route component={MainLayout}>
-	   		<Route path="/" component={Counter} />
-	   		<Route path="/counter" component={Counter} />
-	   		<Route path="/todoindex" component={TodoIndex} />
-	   	</Route>
-	</Router>
-  ), document.getElementById('main'));
+FlowRouter.route('/counter', {
+    action: function(params, queryParams) {
+    	ReactLayout.render(MainLayout, {
+    		children: <Counter initialCount={0} />
+    	});
+    }
+});
+
+FlowRouter.route('/todoindex', {
+    action: function(params, queryParams) {
+    	ReactLayout.render(MainLayout, {
+    		children: <TodoIndex />
+    	});
+    }
 });

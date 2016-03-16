@@ -1,5 +1,3 @@
-const { Link } = ReactRouter;
-
 MainLayout = React.createClass({
   render() {
     return (
@@ -7,10 +5,13 @@ MainLayout = React.createClass({
         <h1>Welcome to Meteor!</h1>        
         <ul>
           <li>
-            <Link to="/">Home</Link>
+            <a href="/">Home</a>
           </li>
           <li>
-            <Link to="/todoindex">React example</Link>
+            <a href="/counter">Counter</a>
+          </li>
+          <li>
+            <a href="/todoindex">React example</a>
           </li>
         </ul>
         <div id="content">

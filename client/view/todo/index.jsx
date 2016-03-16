@@ -2,6 +2,7 @@ TodoIndex = React.createClass({
   mixins: [ReactMeteorData],
 
   getMeteorData() {
+    Meteor.subscribe("todos");
     return {
       todos: Todos.find({}).fetch()
     }
