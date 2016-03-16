@@ -17,6 +17,11 @@ TodoIndex = React.createClass({
       return <Todo key={todo._id} todo={todo} />;
     });
   },
+
+  handleAddClick() {
+    var text = ReactDOM.findDOMNode(this.refs.todoTextInput).value.trim();
+    Meteor.call('addTodo', text);
+  },
  
   render() {
     return (
@@ -28,6 +33,9 @@ TodoIndex = React.createClass({
         <ul>
           {this.renderTodos()}
         </ul>
+
+        <input ref="todoTextInput" type="text" />
+        <input value="add" type="button" onClick={this.handleAddClick} />
       </div>
     );
   }
